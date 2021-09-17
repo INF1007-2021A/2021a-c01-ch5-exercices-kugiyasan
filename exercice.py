@@ -18,32 +18,36 @@ def use_prefixes() -> List[str]:
 
 
 def prime_integer_summation() -> int:
-    up_to = 100
-    sqrt = (up_to ** 0.5) + 1
     primes = [2]
-    for i in range(3, up_to + 1, 2):
+    n = 1
+    while len(primes) < 100:
+        n += 2
+        sqrt = int(n ** 0.5) + 1
         for p in primes:
             if p > sqrt:
                 continue
-            if i % p == 0:
+            if n % p == 0:
                 break
         else:
-            primes.append(i)
+            primes.append(n)
 
     return sum(primes)
 
 
 def factorial(number: int) -> int:
+    # if number == 1:
+    #     return 1
     # return number * factorial(number - 1)
 
     total = 1
-    for n in range(2, number):
+    for n in range(2, number + 1):
         total *= n
 
     return total
 
 
 def use_continue() -> None:
+    # [print(i) for i in range(1, 11) if i != 5]
     for i in range(1, 11):
         if i == 5:
             continue
@@ -51,10 +55,10 @@ def use_continue() -> None:
 
 
 def verify_group(group: List[int]) -> bool:
+    if len(group) < 3 or 10 <= len(group):
+        return False
     if any(age == 25 for age in group):
         return True
-    if 3 <= len(group) and len(group) < 10:
-        return False
     if any(age < 18 for age in group):
         return False
     if any(age > 70 for age in group) and any(age == 50 for age in group):
